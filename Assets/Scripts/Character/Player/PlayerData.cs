@@ -1,9 +1,13 @@
-﻿using Boo.Lang;
+﻿using System.Collections;
+using Boo.Lang;
+using Buffs;
+using DataList;
 using Items;
 using Items.Bag;
 using Items.Equips;
 using Items.Props;
 using UI;
+using UnityEditor;
 using UnityEngine;
 
 namespace Character.Player
@@ -13,16 +17,21 @@ namespace Character.Player
         public LevelData PlayerLevel;
         
         public StatsBase PlayerStats;
-        public List<StatsBase> ItemStats;
+        public List<StatsBase> ItemEnternalStats;
         public StatsBase TotalItemStats;
 
         public StatsBase BaseStats;
         
         public Equipment PlayerEquipment;
-        public List<StatsBase>  BuffStats;
+        public List<Buff>  Bufflist;
+        public StatsBase TotalBuff;
+        public StatsIntime TotalBuffRecover;
+        
         
         public StatsBase TotalStats;
         public StatsIntime TotalIntime;
+
+        public StatsIntime TotalIntimeRecover;
         
         public PlayerBag PlayerBag;
 
@@ -40,18 +49,19 @@ namespace Character.Player
             }
             
         }
-
+        
+        
 
         private void Start()
         {
             PlayerStats = new StatsBase();
             PlayerLevel = new LevelData();
-            ItemStats = new List<StatsBase>();
+            ItemEnternalStats = new List<StatsBase>();
             BaseStats = new StatsBase();
             
             
             PlayerEquipment = new Equipment();
-            BuffStats = new List<StatsBase>();
+            Bufflist = new List<Buff>();
             
             TotalStats = new StatsBase();
             TotalIntime = new StatsIntime();
@@ -59,16 +69,99 @@ namespace Character.Player
             
             TotalIntime.HpI = 50;
             PlayerStats.HpM = 100;
+
+            StartCoroutine(BuffRefresh());
+            StartCoroutine(AutoRecover());
             
             CenterControl.Centerctrl.RegisterData(this);
         }
+
+        
+        public void getBuff(int num)
+        {
+            BuffHolder bufflist = AssetDatabase.LoadAssetAtPath<BuffHolder>("Assets/Resources/Buffs.asset");
+            
+            Buff temp = new Buff();
+            foreach (Buff buff in bufflist.BuffList)
+            {
+                if (buff.Objindex.Id.Equals(num))
+                {
+                    temp = buff;
+                }
+            }/*
+            {
+                Buffshow = buff.Buffshow,
+                EffectRecover = buff.EffectRecover,
+                EffectStats = buff.EffectStats,
+                EffectTime = buff.EffectTime,
+                IsInterruptible = buff.IsInterruptible,
+                IsRecover = buff.IsInterruptible,
+                ObjectIndex = buff.ObjectIndex
+            };*/
+            foreach (Buff buffs in Bufflist)
+            {
+                if (buffs.Objindex.Id.Equals(temp.Objindex.Id))
+                {
+                    Bufflist.Remove(buffs);
+                }
+            }
+
+            if (temp.IsRecover)
+            {
+                temp.CalRecover();
+            }
+            Bufflist.Add(temp);
+        }
+
+
+        IEnumerator AutoRecover()
+        {
+            while (true)
+            {
+                TotalIntime.Add(TotalIntimeRecover);
+                RefreshData();
+                yield return new WaitForSeconds(1f);
+            }
+            
+        }
+        IEnumerator BuffRefresh()
+        {
+            while (true)
+            {
+                TotalBuff = new StatsBase();
+                TotalBuffRecover = new StatsIntime();
+                
+                foreach (Buff buff in Bufflist)
+                {
+                    if (buff.IsRecover)
+                    {
+                        TotalBuffRecover.Add(buff.EffectRecover);
+                    }
+                    else
+                    {
+                        TotalBuff.Add(buff.EffectStats);
+                    }
+
+                    buff.EffectTime--;
+                    if (buff.EffectTime <= 0)
+                    {
+                        Bufflist.Remove(buff);
+                    }
+                }
+                RefreshData();
+                yield return new WaitForSeconds(1f);
+            }
+        }
+        
+        
 
         public void RefreshData()
         {
             TotalStats = new StatsBase();
             BaseStats = new StatsBase();
             TotalItemStats = new StatsBase();
-            foreach (StatsBase item in ItemStats)
+            TotalIntimeRecover = new StatsIntime();
+            foreach (StatsBase item in ItemEnternalStats)
             {
                 TotalItemStats.Add(item);
             }
@@ -80,9 +173,12 @@ namespace Character.Player
             TotalStats.Add(BaseStats);
             
             TotalStats.Add(PlayerEquipment.TotalEquips);
-            //TotalStats.Plus(TotalStats,BuffStats);
-            TotalIntime.DataCheck(TotalStats);
+            
+            TotalIntimeRecover.Add(new StatsIntime(){HpI = TotalStats.HpM + TotalBuffRecover.HpI,MgI = TotalStats.MgM + TotalBuffRecover.MgI});
+            
+            //TotalIntime.DataCheck(TotalStats);
         }
+
         
         
     

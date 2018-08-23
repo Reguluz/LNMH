@@ -1,5 +1,9 @@
-﻿namespace ID
+﻿using System;
+using UnityEngine;
+
+namespace ID
 {
+    [Serializable]
     public class ObjectIndex
     {
         public int Id;

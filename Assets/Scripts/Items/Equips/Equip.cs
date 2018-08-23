@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace Items.Equips
 {
+    
+    [System.Serializable]
     public class Equip:Item
     {
         public Equiptype Equiptype;

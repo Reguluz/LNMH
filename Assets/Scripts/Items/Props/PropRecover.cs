@@ -1,32 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using Buffs;
 using Character;
 using Character.Player;
 using UnityEngine;
 
 namespace Items.Props
 {
+    [System.Serializable]
     public class PropRecover:Prop
     {
-        public Boolean byValue = true;
-        public StatsIntime PIntimeProperties = new StatsIntime();
-        public StatsIntime MIntimeProperties = new StatsIntime();
-        public StatsIntime MFIntimeProperties = new StatsIntime();
-
+        public StatsIntime PIntimeProperties;
+        public List<int> Buffs = new List<int>();
 
         public override void UseItem()
         {
-            if (byValue)
+            PlayerData.Player.TotalIntime.Add(PIntimeProperties);
+            foreach (int effect in Buffs)
             {
-                PlayerData.Player.TotalIntime.Add(PIntimeProperties);
+                PlayerData.Player.getBuff(effect);
             }
-            else
-            {
-                Debug.Log("run");
-                
-                MFIntimeProperties = StatsIntime.Multi(PlayerData.Player.TotalStats, MIntimeProperties);
-                PlayerData.Player.TotalIntime.Add(MFIntimeProperties);
-            }
-            
         }
     }
 }

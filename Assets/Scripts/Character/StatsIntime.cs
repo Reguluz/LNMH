@@ -1,5 +1,8 @@
-﻿namespace Character
+﻿using System;
+
+namespace Character
 {
+    [Serializable]
     public class StatsIntime
     {
         public float HpI;

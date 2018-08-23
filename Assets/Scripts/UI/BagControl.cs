@@ -356,11 +356,13 @@ namespace UI
             {   
                 if (i<PlayerData.Player.PlayerBag.Listshow.Count)    //此格有物品
                 {
+                    Item[i].GetComponent<Image>().sprite = PlayerData.Player.PlayerBag.Listshow[i].item.Bagshow;
                     Item[i].gameObject.GetComponentInChildren<Text>().text = PlayerData.Player.PlayerBag.Listshow[i].item.Objindex.Name + " : " + PlayerData.Player.PlayerBag.Listshow[i].num;
                     Item[i].interactable = true;
                 }
                 else
                 {
+                    Item[i].GetComponent<Image>().sprite = null;
                     Item[i].gameObject.GetComponentInChildren<Text>().text = " ";
                     Item[i].interactable = false;
                 }

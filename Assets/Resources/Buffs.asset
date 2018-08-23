@@ -1,0 +1,352 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33c747713c94569bd5e9c28cb831810, type: 3}
+  m_Name: Buffs
+  m_EditorClassIdentifier: 
+  BuffList:
+  - Objindex:
+      Id: 2001
+      Name: "\u751F\u547D\u5F3A\u5316I"
+      Comments: "\u81EA\u673A\u751F\u547D\u4E0A\u9650\u63D0\u534720%"
+    Buffshow: {fileID: 0}
+    IsRecover: 0
+    IsInterruptible: 0
+    EffectStats:
+      HpM: 0.2
+      HpR: 0
+      Atk: 0
+      NAtk: 0
+      FAtk: 0
+      Def: 0
+      SpdM: 0
+      SpdA: 0
+      MpM: 0
+      MpR: 0
+      CritP: 0
+      CritM: 0
+      MgM: 0
+    EffectRecover:
+      HpI: 0
+      MpI: 0
+      MgI: 0
+    EffectTime: 80
+  - Objindex:
+      Id: 2002
+      Name: "\u4F53\u672F\u4E13\u7CBEI"
+      Comments: "\u81EA\u673A\u7684\u4F53\u672F\u7C7B\u578B\uFF08\u57FA\u7840\u3001\u6280\u80FD\u53CA\u7B26\u5361\uFF09\u7684\u4F24\u5BB3\u63D0\u534720%"
+    Buffshow: {fileID: 0}
+    IsRecover: 0
+    IsInterruptible: 0
+    EffectStats:
+      HpM: 0
+      HpR: 0
+      Atk: 0
+      NAtk: 0.2
+      FAtk: 0
+      Def: 0
+      SpdM: 0
+      SpdA: 0
+      MpM: 0
+      MpR: 0
+      CritP: 0
+      CritM: 0
+      MgM: 0
+    EffectRecover:
+      HpI: 0
+      MpI: 0
+      MgI: 0
+    EffectTime: 60
+  - Objindex:
+      Id: 2003
+      Name: "\u5F39\u5E55\u4E13\u7CBEI"
+      Comments: "\u81EA\u673A\u7684\u5F39\u5E55\u7C7B\u578B\uFF08\u57FA\u7840\u3001\u6280\u80FD\u53CA\u7B26\u5361\uFF09\u7684\u4F24\u5BB3\u63D0\u534720%"
+    Buffshow: {fileID: 0}
+    IsRecover: 0
+    IsInterruptible: 0
+    EffectStats:
+      HpM: 0
+      HpR: 0
+      Atk: 0
+      NAtk: 0
+      FAtk: 0.2
+      Def: 0
+      SpdM: 0
+      SpdA: 0
+      MpM: 0
+      MpR: 0
+      CritP: 0
+      CritM: 0
+      MgM: 0
+    EffectRecover:
+      HpI: 0
+      MpI: 0
+      MgI: 0
+    EffectTime: 60
+  - Objindex:
+      Id: 2004
+      Name: "\u9632\u5FA1\u4E13\u7CBEI"
+      Comments: "\u81EA\u673A\u7684\u9632\u5FA1\u529B\u63D0\u534720%"
+    Buffshow: {fileID: 0}
+    IsRecover: 0
+    IsInterruptible: 0
+    EffectStats:
+      HpM: 0
+      HpR: 0
+      Atk: 0
+      NAtk: 0
+      FAtk: 0
+      Def: 0.2
+      SpdM: 0
+      SpdA: 0
+      MpM: 0
+      MpR: 0
+      CritP: 0
+      CritM: 0
+      MgM: 0
+    EffectRecover:
+      HpI: 0
+      MpI: 0
+      MgI: 0
+    EffectTime: 60
+  - Objindex:
+      Id: 2005
+      Name: "\u6025\u901FI"
+      Comments: "\u81EA\u673A\u7684\u79FB\u52A8\u901F\u5EA6\u63D0\u534750%"
+    Buffshow: {fileID: 0}
+    IsRecover: 0
+    IsInterruptible: 0
+    EffectStats:
+      HpM: 0
+      HpR: 0
+      Atk: 0
+      NAtk: 0
+      FAtk: 0
+      Def: 0
+      SpdM: 0.5
+      SpdA: 0
+      MpM: 0
+      MpR: 0
+      CritP: 0
+      CritM: 0
+      MgM: 0
+    EffectRecover:
+      HpI: 0
+      MpI: 0
+      MgI: 0
+    EffectTime: 60
+  - Objindex:
+      Id: 2006
+      Name: "\u751F\u547D\u6062\u590DI"
+      Comments: "\u81EA\u673A\u751F\u547D\u57285s\u5185\u6062\u590D\u603B\u91CF\u768430%"
+    Buffshow: {fileID: 0}
+    IsRecover: 1
+    IsInterruptible: 0
+    EffectStats:
+      HpM: 0
+      HpR: 0
+      Atk: 0
+      NAtk: 0
+      FAtk: 0
+      Def: 0
+      SpdM: 0
+      SpdA: 0
+      MpM: 0
+      MpR: 0
+      CritP: 0
+      CritM: 0
+      MgM: 0
+    EffectRecover:
+      HpI: 0.3
+      MpI: 0
+      MgI: 0
+    EffectTime: 5
+  - Objindex:
+      Id: 2007
+      Name: "\u7075\u529B\u6062\u590DI"
+      Comments: "\u81EA\u673A\u7075\u529B\u57285s\u5185\u6062\u590D30%"
+    Buffshow: {fileID: 0}
+    IsRecover: 1
+    IsInterruptible: 0
+    EffectStats:
+      HpM: 0
+      HpR: 0
+      Atk: 0
+      NAtk: 0
+      FAtk: 0
+      Def: 0
+      SpdM: 0
+      SpdA: 0
+      MpM: 0
+      MpR: 0
+      CritP: 0
+      CritM: 0
+      MgM: 0
+    EffectRecover:
+      HpI: 0
+      MpI: 0.3
+      MgI: 0
+    EffectTime: 5
+  - Objindex:
+      Id: 2008
+      Name: "\u751F\u547D\u6062\u590DII"
+      Comments: "\u5728\u6301\u7EED\u65F6\u95F4\u5185\u603B\u5171\u6062\u590D50%\u751F\u547D\uFF0C\u53D7\u5230\u653B\u51FB\u65F6\u88AB\u6253\u65AD"
+    Buffshow: {fileID: 0}
+    IsRecover: 1
+    IsInterruptible: 1
+    EffectStats:
+      HpM: 0
+      HpR: 0
+      Atk: 0
+      NAtk: 0
+      FAtk: 0
+      Def: 0
+      SpdM: 0
+      SpdA: 0
+      MpM: 0
+      MpR: 0
+      CritP: 0
+      CritM: 0
+      MgM: 0
+    EffectRecover:
+      HpI: 0.5
+      MpI: 0
+      MgI: 0
+    EffectTime: 15
+  - Objindex:
+      Id: 2009
+      Name: "\u7075\u529B\u6062\u590DII"
+      Comments: "\u5728\u6301\u7EED\u65F6\u95F4\u5185\u603B\u5171\u6062\u590D50%\u7075\u529B\uFF0C\u53D7\u5230\u653B\u51FB\u65F6\u88AB\u6253\u65AD"
+    Buffshow: {fileID: 0}
+    IsRecover: 1
+    IsInterruptible: 1
+    EffectStats:
+      HpM: 0
+      HpR: 0
+      Atk: 0
+      NAtk: 0
+      FAtk: 0
+      Def: 0
+      SpdM: 0
+      SpdA: 0
+      MpM: 0
+      MpR: 0
+      CritP: 0
+      CritM: 0
+      MgM: 0
+    EffectRecover:
+      HpI: 0
+      MpI: 0.5
+      MgI: 0
+    EffectTime: 15
+  - Objindex:
+      Id: 2010
+      Name: "\u8FDF\u7F13I"
+      Comments: "\u51CF\u6162\u53D7\u5F71\u54CD\u5355\u4F4D\u7684\u79FB\u52A8\u901F\u5EA6\u53CA\u653B\u51FB\u901F\u5EA630%"
+    Buffshow: {fileID: 0}
+    IsRecover: 0
+    IsInterruptible: 0
+    EffectStats:
+      HpM: 0
+      HpR: 0
+      Atk: 0
+      NAtk: 0
+      FAtk: 0
+      Def: 0
+      SpdM: -0.30000001192092896
+      SpdA: -0.30000001192092896
+      MpM: 0
+      MpR: 0
+      CritP: 0
+      CritM: 0
+      MgM: 0
+    EffectRecover:
+      HpI: 0
+      MpI: 0
+      MgI: 0
+    EffectTime: 60
+  - Objindex:
+      Id: 2011
+      Name: "\u751F\u547D\u51CF\u5C11I"
+      Comments: "\u5728\u6301\u7EED\u65F6\u95F4\u5185\u51CF\u5C11\u53D7\u5F71\u54CD\u5355\u4F4D\u7684\u751F\u547D\u503C\u5171\u8BA130%"
+    Buffshow: {fileID: 0}
+    IsRecover: 1
+    IsInterruptible: 0
+    EffectStats:
+      HpM: 0
+      HpR: 0
+      Atk: 0
+      NAtk: 0
+      FAtk: 0
+      Def: 0
+      SpdM: 0
+      SpdA: 0
+      MpM: 0
+      MpR: 0
+      CritP: 0
+      CritM: 0
+      MgM: 0
+    EffectRecover:
+      HpI: -0.3
+      MpI: 0
+      MgI: 0
+    EffectTime: 60
+  - Objindex:
+      Id: 2012
+      Name: "\u653B\u51FB\u529B\u4E0B\u964DI"
+      Comments: "\u5728\u6301\u7EED\u65F6\u95F4\u5185\u51CF\u5C11\u53D7\u5F71\u54CD\u5355\u4F4D\u7684\u653B\u51FB\u529B30%"
+    Buffshow: {fileID: 0}
+    IsRecover: 0
+    IsInterruptible: 0
+    EffectStats:
+      HpM: 0
+      HpR: 0
+      Atk: -0.3
+      NAtk: 0
+      FAtk: 0
+      Def: 0
+      SpdM: 0
+      SpdA: 0
+      MpM: 0
+      MpR: 0
+      CritP: 0
+      CritM: 0
+      MgM: 0
+    EffectRecover:
+      HpI: 0
+      MpI: 0
+      MgI: 0
+    EffectTime: 60
+  - Objindex:
+      Id: 2013
+      Name: "\u9632\u5FA1\u529B\u4E0B\u964DI"
+      Comments: "\u5728\u6301\u7EED\u65F6\u95F4\u5185\u51CF\u5C11\u53D7\u5F71\u54CD\u5355\u4F4D\u7684\u9632\u5FA1\u529B30%"
+    Buffshow: {fileID: 0}
+    IsRecover: 0
+    IsInterruptible: 0
+    EffectStats:
+      HpM: 0
+      HpR: 0
+      Atk: 0
+      NAtk: 0
+      FAtk: 0
+      Def: -0.3
+      SpdM: 0
+      SpdA: 0
+      MpM: 0
+      MpR: 0
+      CritP: 0
+      CritM: 0
+      MgM: 0
+    EffectRecover:
+      HpI: 0
+      MpI: 0
+      MgI: 0
+    EffectTime: 60

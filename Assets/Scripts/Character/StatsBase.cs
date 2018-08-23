@@ -1,35 +1,44 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Character
 {
+    [Serializable]
     public class StatsBase
     {
         public float HpM;
+        public float HpR;
         public float Atk;
+        public float NAtk;    //系数
+        public float FAtk;    //系数
         public float Def;
         public double SpdM;
         public double SpdA;
 
         public int MpM;
+        public int MpR;
         public float CritP;
         public float CritM;
         
 
         public float MgM;
-
         public StatsBase()
         {
           
             
-            this.HpM =0;
-            this.Atk =0;
-            this.Def =0;
-            this.SpdM =0;
-            this.SpdA =0;
+            this.HpM = 0;
+            this.HpR = 0;
+            this.Atk = 0;
+            this.NAtk = 1;
+            this.FAtk = 1;
+            this.Def = 0;
+            this.SpdM = 0;
+            this.SpdA = 0;
           
-            this.MpM =0;
-            this.CritP =0;
-            this.CritM =0;
+            this.MpM = 0;
+            this.MpR = 0;
+            this.CritP = 0;
+            this.CritM = 0;
             
             this.MgM =0;
         }
@@ -56,12 +65,16 @@ namespace Character
         public void Add(StatsBase data1)
         {        
             HpM += data1.HpM;
+            HpR += data1.HpR;
             Atk += data1.Atk;
+            NAtk += data1.NAtk;
+            FAtk += data1.FAtk;
             Def += data1.Def;
             SpdM += data1.SpdM;
             SpdA += data1.SpdA;
 
             MpM += data1.MpM;
+            MpR += data1.MpR;
             CritP += data1.CritP;
             CritM += data1.CritM;
         
