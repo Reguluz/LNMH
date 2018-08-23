@@ -25,7 +25,7 @@ namespace Character.Player
         public Equipment PlayerEquipment;
         public List<Buff>  Bufflist;
         public StatsBase TotalBuff;
-        public StatsIntime TotalBuffRecover;
+        //public StatsIntime TotalBuffRecover;
         
         
         public StatsBase TotalStats;
@@ -129,18 +129,12 @@ namespace Character.Player
             while (true)
             {
                 TotalBuff = new StatsBase();
-                TotalBuffRecover = new StatsIntime();
                 
                 foreach (Buff buff in Bufflist)
                 {
-                    if (buff.IsRecover)
-                    {
-                        TotalBuffRecover.Add(buff.EffectRecover);
-                    }
-                    else
-                    {
+                    
                         TotalBuff.Add(buff.EffectStats);
-                    }
+                    
 
                     buff.EffectTime--;
                     if (buff.EffectTime <= 0)
@@ -148,7 +142,6 @@ namespace Character.Player
                         Bufflist.Remove(buff);
                     }
                 }
-                RefreshData();
                 yield return new WaitForSeconds(1f);
             }
         }
@@ -157,7 +150,20 @@ namespace Character.Player
 
         public void RefreshData()
         {
-            TotalStats = new StatsBase();
+            //重新计算装备总值、道具总值、基础总值、buff总值（按顺序）
+            
+            PlayerEquipment.RefreshData(); //装备总值
+            foreach (StatsBase item in ItemEnternalStats)    //道具总值
+            {
+                TotalItemStats.Add(item);
+            }
+
+            RefreshBase(); //基础总值
+            //BuffRefresh()周期更新buff总值
+            RefreshRecover();
+            RefreshStats();
+
+            /*TotalStats = new StatsBase();
             BaseStats = new StatsBase();
             TotalItemStats = new StatsBase();
             TotalIntimeRecover = new StatsIntime();
@@ -174,12 +180,49 @@ namespace Character.Player
             
             TotalStats.Add(PlayerEquipment.TotalEquips);
             
-            TotalIntimeRecover.Add(new StatsIntime(){HpI = TotalStats.HpM + TotalBuffRecover.HpI,MgI = TotalStats.MgM + TotalBuffRecover.MgI});
-            
+            TotalIntimeRecover.Add(new StatsIntime(){HpI = TotalStats.HpR + TotalBuffRecover.HpI,MpI = TotalStats.MpR + TotalBuffRecover.MpI});*/
+
             //TotalIntime.DataCheck(TotalStats);
         }
 
-        
+        public void RefreshBase()
+        {
+            BaseStats.HpM = PlayerStats.HpM + TotalItemStats.HpM;
+            BaseStats.HpR = PlayerStats.HpR + TotalItemStats.HpR;
+            BaseStats.Atk = PlayerStats.Atk + TotalItemStats.Atk;
+            BaseStats.NAtk = PlayerStats.NAtk + TotalItemStats.NAtk;
+            BaseStats.FAtk = PlayerStats.FAtk + TotalItemStats.FAtk;
+            BaseStats.Def = PlayerStats.Def + TotalItemStats.Def;
+            BaseStats.SpdM = PlayerStats.SpdM + TotalItemStats.SpdM;
+            BaseStats.SpdA = PlayerStats.SpdA + TotalItemStats.SpdA;
+            BaseStats.MpM = PlayerStats.MpM + TotalItemStats.MpM;
+            BaseStats.MpR = PlayerStats.MpR + TotalItemStats.MpR;
+            BaseStats.CritP = PlayerStats.CritP + TotalItemStats.CritP;
+            BaseStats.CritM = PlayerStats.CritM + TotalItemStats.CritM;
+            BaseStats.MgM = PlayerStats.MgM + TotalItemStats.MgM;
+        }
+        public void RefreshRecover()
+        {
+            TotalIntimeRecover.HpI = PlayerStats.HpR + TotalBuff.HpR + TotalItemStats.HpR;
+            TotalIntimeRecover.MpI = PlayerStats.MpR + TotalBuff.MpR + TotalItemStats.MpR;
+        }
+
+        public void RefreshStats()
+        {
+            TotalStats.HpM = TotalBuff.HpM + PlayerEquipment.TotalEquips.HpM + BaseStats.HpM;
+            TotalStats.HpR = TotalBuff.HpR + PlayerEquipment.TotalEquips.HpR + BaseStats.HpR;
+            TotalStats.Atk = TotalBuff.Atk + PlayerEquipment.TotalEquips.Atk + BaseStats.Atk;
+            TotalStats.NAtk = TotalBuff.NAtk + PlayerEquipment.TotalEquips.NAtk + BaseStats.NAtk;
+            TotalStats.FAtk = TotalBuff.FAtk + PlayerEquipment.TotalEquips.FAtk + BaseStats.FAtk;
+            TotalStats.Def = TotalBuff.Def + PlayerEquipment.TotalEquips.Def + BaseStats.Def;
+            TotalStats.SpdM = TotalBuff.SpdM + PlayerEquipment.TotalEquips.SpdM + BaseStats.SpdM;
+            TotalStats.SpdA = TotalBuff.SpdA + PlayerEquipment.TotalEquips.SpdA + BaseStats.SpdA;
+            TotalStats.MpM = TotalBuff.MpM + PlayerEquipment.TotalEquips.MpM + BaseStats.MpM;
+            TotalStats.MpR = TotalBuff.MpR + PlayerEquipment.TotalEquips.MpR + BaseStats.MpR;
+            TotalStats.CritP = TotalBuff.CritP + PlayerEquipment.TotalEquips.CritP + BaseStats.CritP;
+            TotalStats.CritM = TotalBuff.CritM + PlayerEquipment.TotalEquips.CritM + BaseStats.CritM;
+            TotalStats.MgM = TotalBuff.MgM + PlayerEquipment.TotalEquips.MgM + BaseStats.MgM;
+        }
         
     
     }

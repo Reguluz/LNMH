@@ -132,7 +132,7 @@ namespace DataList
                     Buffshow = Resources.Load<Sprite>("Item/"+Convert.ToInt32(collect[i][0].ToString())),
                     IsRecover = (bool) collect[i][4],
                     IsInterruptible = (bool)collect[i][5],
-                    EffectRecover = new StatsIntime()
+                    EffectRecoverP = new StatsIntime()
                     {
                         HpI = Convert.ToSingle(collect[i][6].ToString()),
                         MpI = Convert.ToSingle(collect[i][7].ToString()),

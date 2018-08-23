@@ -16,7 +16,7 @@ namespace Buffs
         public bool IsInterruptible;
 
         public StatsBase EffectStats;
-        public StatsIntime EffectRecover;
+        public StatsIntime EffectRecoverP;
 
         public int EffectTime;
 
@@ -27,9 +27,9 @@ namespace Buffs
 
         public void CalRecover()
         {
-            EffectRecover.HpI = EffectStats.HpR * PlayerData.Player.TotalStats.HpM / EffectTime;
+            EffectRecoverP.HpI = EffectStats.HpR * PlayerData.Player.BaseStats.HpM / EffectTime;
             // ReSharper disable once PossibleLossOfFraction
-            EffectRecover.MpI = EffectStats.MpR * PlayerData.Player.TotalStats.MpM / EffectTime;
+            EffectRecoverP.MpI = EffectStats.MpR * PlayerData.Player.BaseStats.MpM / EffectTime;
         }
     }
 }

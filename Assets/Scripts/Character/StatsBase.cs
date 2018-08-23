@@ -29,8 +29,8 @@ namespace Character
             this.HpM = 0;
             this.HpR = 0;
             this.Atk = 0;
-            this.NAtk = 1;
-            this.FAtk = 1;
+            this.NAtk = 0;
+            this.FAtk = 0;
             this.Def = 0;
             this.SpdM = 0;
             this.SpdA = 0;
